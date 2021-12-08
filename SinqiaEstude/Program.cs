@@ -16,9 +16,6 @@ namespace AppSinqiaEstude
             ProfessorService professorService = new ProfessorService();
             MateriaService materiaService = new MateriaService();
 
-
-            // Aluno aluno = new Aluno("Hugo Lima", "hugo.lima@sinqia.com.br", "177.070.267.99", "Benfica");
-
             materiaService.cadastrarMateria("Geografia");
             materiaService.cadastrarMateria("Programacao");
 

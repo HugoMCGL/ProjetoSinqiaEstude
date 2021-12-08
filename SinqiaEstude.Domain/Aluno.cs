@@ -16,7 +16,7 @@ namespace SinqiaEstude.Domain
             this.endereco = endereco;
 
         }
-
+        //teste
         public List<Materia> materiaAluno = new List<Materia>();
 
         public override string ToString()
