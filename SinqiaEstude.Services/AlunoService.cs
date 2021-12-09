@@ -19,14 +19,18 @@ namespace SinqiaEstude.Services
 
         public void cadastrarMateriaAluno(string nomeAluno, string materia)
         {
-            foreach (Aluno alunolist in AlunoRepository.GetAll())
+            foreach (Aluno aluno in AlunoRepository.GetAll())
             {
-                if (alunolist.nome.Equals(nomeAluno))
+                if (aluno.nome.Equals(nomeAluno))
                 {
                     Materia materiaDb = materiaService.FindByNome(materia);
                     if (materiaDb != null)
                     {
-                        alunolist.materiaAluno.Add(materiaDb);
+                        if (aluno.MateriaAluno == null)
+                        {
+                            aluno.MateriaAluno = new List<Materia>();
+                        }
+                        aluno.MateriaAluno.Add(materiaDb);
                         Console.WriteLine("Deu bom");
                     }
                 }
