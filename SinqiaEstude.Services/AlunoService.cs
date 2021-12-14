@@ -8,10 +8,10 @@ namespace SinqiaEstude.Services
     public class AlunoService
     {
         MateriaService materiaService = new MateriaService();
-        public void cadastrarAluno(string nome, string email, string cpf, string endereco)
+        public void cadastrarAluno(string nome, int idade,  string email, string cpf, string endereco)
         {
 
-            Aluno aluno = new Aluno(nome, email, cpf, endereco);
+            Aluno aluno = new Aluno(nome, idade, email, cpf, endereco);
             AlunoRepository.Add(aluno);
             Console.WriteLine("aluno : " + nome + " criado com sucesso!");
             
