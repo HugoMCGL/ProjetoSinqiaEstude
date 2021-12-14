@@ -17,7 +17,7 @@ namespace SinqiaEstude.Domain
             this.endereco = endereco;
         }
 
-        Materia materiaProfessor { get; set; }
+        public List<Materia> MateriaProfessor { get; set; }
 
         public override string ToString()
         {
