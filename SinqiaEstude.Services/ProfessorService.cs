@@ -8,9 +8,9 @@ namespace SinqiaEstude.Services
     public class ProfessorService
     {
         MateriaService materiaService = new MateriaService();
-        public void cadastrarProfessor(string nome, string email, string cpf, string endereco)
+        public void cadastrarProfessor(string nome, int idade, string email, string cpf, string endereco)
         {
-            Professor professor = new Professor(nome, email, cpf, endereco);
+            Professor professor = new Professor(nome, idade, email, cpf, endereco);
             ProfessorRepository.Add(professor);
             Console.WriteLine("Professor: " + nome + " criado com sucesso!");
         }
@@ -20,7 +20,7 @@ namespace SinqiaEstude.Services
             {
                 if (professor.nome.Equals(nomeProfessor))
                 {
-                    Materia mateiraDb = materiaService.FindByNome(materia);
+                    Materia materiaDb = materiaService.FindByNome(materia);
                     if (materiaDb != null)
                     {
                         if (professor.MateriaProfessor == null)

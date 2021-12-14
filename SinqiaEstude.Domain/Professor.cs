@@ -21,7 +21,7 @@ namespace SinqiaEstude.Domain
 
         public override string ToString()
         {
-            return "\nnome: " + nome + " \nemail: " + email +
+            return "\nnome: " + nome + "idade: "+idade+ "\nemail: " + email +
                 "\ncpf: " + CPF + "\nendereço: " + endereco;
         }
 
