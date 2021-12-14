@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using SinqiaEstude.Domain;
 using SinqiaEstude.Repository;
 using SinqiaEstude.Services;
@@ -21,12 +22,16 @@ namespace AppSinqiaEstude
             int menu;
             int idade;
             int escolha;
-            string nome, endereco, email, cpf;
+            string nome, endereco, email, cpf, nomeMateria;
             bool continua = true;
             bool continuaMenu = true;
+            
+            materiaService.cadastrarMateria("Geografia");
+            materiaService.cadastrarMateria("Programacao");
 
             while (continuaMenu == true)
             {
+                Thread.Sleep(500);
                 Console.WriteLine("\n--Bem vindo ao Sistema Sinqia Estude--\nDigite 1 para cadastro \nDigite 2 para excluir\n Digite 3 para sair");
                 menu = Convert.ToInt32(Console.ReadLine());
                 Console.WriteLine("menu: "+menu);
@@ -37,12 +42,14 @@ namespace AppSinqiaEstude
 
                         while (continua == true)
                         {
-                            Console.WriteLine("Digite 1 para cadastrar professor \nDigite 2 para cadastrar Aluno \nDigite 3 para cadastrar matéria");
+                            Thread.Sleep(500);
+                            Console.WriteLine("\nDigite 1 para cadastrar professor \nDigite 2 para cadastrar Aluno \nDigite 3 para cadastrar matéria\nDigite 4 para atribuir matéria para o Aluno");
                             escolha = Convert.ToInt32(Console.ReadLine());
-                            if (escolha == 1)
+                            if (escolha == 1)//cadastrar professor
                             {
                                 Console.WriteLine("Digite o nome do Professor: ");
                                 nome = Console.ReadLine();
+                                
                                 Console.WriteLine("Digite a idade do Professor: ");
                                 idade = Convert.ToInt32(Console.ReadLine());
                                 Console.WriteLine("Digite o cpf do Professor: ");
@@ -54,7 +61,7 @@ namespace AppSinqiaEstude
                                 professorService.cadastrarProfessor(nome, idade, email, cpf, endereco);
                                 continua = false;
                             }
-                            else if (escolha == 2)
+                            else if (escolha == 2)//cadastrar aluno
                             {
                                 Console.WriteLine("Digite o nome do Aluno: ");
                                 nome = Console.ReadLine();
@@ -66,18 +73,32 @@ namespace AppSinqiaEstude
                                 email = Console.ReadLine();
                                 Console.WriteLine("Digite o endereço do Aluno: ");
                                 endereco = Console.ReadLine();
-                                alunoService.cadastrarAluno(nome, idade, "hugo.lima@sinqia.com.br", "177.070.267.99", "Benfica");
+                                alunoService.cadastrarAluno(nome, idade, email, cpf, endereco);
                                 continua = false;
                             }
-                            else if (escolha == 3)
+                            else if (escolha == 3)// cadastrar materia
                             {
                                 Console.WriteLine("Digite o nome da materia: ");
                                 nome = Console.ReadLine();
                                 materiaService.cadastrarMateria(nome);
                                 continua = false;   
                             }
+                            else if (escolha == 4)//atribuir matéria para o aluno
+                            {
+                                Console.WriteLine("Digite o nome do Aluno: ");
+                                nome = Console.ReadLine();
+                                Console.WriteLine("Digite o nome da matéria: ");
+                                nomeMateria = Console.ReadLine();
+
+                                alunoService.cadastrarMateriaAluno(nome, nomeMateria);
+                                if (alunoService.statusAtribuicaoMateria)
+                                {
+                                    continua = false;
+                                } 
+                            }
                             else
                             {
+                                Thread.Sleep(500);
                                 Console.WriteLine("Escolha inválida! ");
                             }
 
@@ -91,11 +112,7 @@ namespace AppSinqiaEstude
                         break;
                 }
             }
-            
-
-            //materiaService.cadastrarMateria("Geografia");
-            //materiaService.cadastrarMateria("Programacao");
-
+     
 //            alunoService.cadastrarAluno("Hugo Lima", "hugo.lima@sinqia.com.br", "177.070.267.99", "Benfica");
   //          alunoService.cadastrarAluno("Jonathan Santos", "jonathan.santos@sinqia.com.br", "123.456.789-33", "Campo Grande");
 

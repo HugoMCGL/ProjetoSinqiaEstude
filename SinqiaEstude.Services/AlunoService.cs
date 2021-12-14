@@ -7,6 +7,7 @@ namespace SinqiaEstude.Services
 {
     public class AlunoService
     {
+        public bool statusAtribuicaoMateria;
         MateriaService materiaService = new MateriaService();
         public void cadastrarAluno(string nome, int idade,  string email, string cpf, string endereco)
         {
@@ -31,7 +32,13 @@ namespace SinqiaEstude.Services
                             aluno.MateriaAluno = new List<Materia>();
                         }
                         aluno.MateriaAluno.Add(materiaDb);
-                        Console.WriteLine("Deu bom");
+                        Console.WriteLine("Matéria atribuída com sucesso!");
+                        statusAtribuicaoMateria = true;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Matéria não encontrada");
+                        statusAtribuicaoMateria = false;
                     }
                 }
                 //Console.WriteLine("\nAluno: " + alunolist);
