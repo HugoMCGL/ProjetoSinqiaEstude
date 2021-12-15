@@ -7,6 +7,7 @@ namespace SinqiaEstude.Services
 {
     public class ProfessorService
     {
+        public bool statusAtribuicaoMateria;
         MateriaService materiaService = new MateriaService();
         public void cadastrarProfessor(string nome, int idade, string email, string cpf, string endereco)
         {
@@ -16,19 +17,38 @@ namespace SinqiaEstude.Services
         }
         public void cadastrarMateriaProfessor(string nomeProfessor, string materia)
         {
-            foreach (Professor professor in ProfessorRepository.GetAll())
+            if (ProfessorRepository.FindByDescricao(nomeProfessor) == null)
             {
-                if (professor.nome.Equals(nomeProfessor))
+                Console.WriteLine("Professor inválido");
+            }
+            else
+            {
+                foreach (Professor professor in ProfessorRepository.GetAll())
                 {
-                    Materia materiaDb = materiaService.FindByNome(materia);
-                    if (materiaDb != null)
+                    if (professor.nome.Equals(nomeProfessor))
                     {
-                        if (professor.MateriaProfessor == null)
+                        Materia materiaDb = materiaService.FindByNome(materia);
+                        if (materiaDb != null)
                         {
-                            professor.MateriaProfessor = new List<Materia>();
+                            if (professor.MateriaProfessor == null)
+                            {
+                                Console.WriteLine("Matéria atribuída com sucesso!");
+                                professor.MateriaProfessor = materiaDb;
+                                statusAtribuicaoMateria = true;
+                            }
+                            else
+                            {
+                                Console.WriteLine("matéria já atribuida");
+                            }
+                            //professor.MateriaProfessor.Add(materiaDb);
+                            
+                            
                         }
-                        professor.MateriaProfessor.Add(materiaDb);
-                        Console.WriteLine("Deu bom");
+                        else
+                        {
+                            Console.WriteLine("Matéria não encontrada");
+                            statusAtribuicaoMateria = false;
+                        }
                     }
                 }
             }

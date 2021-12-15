@@ -47,7 +47,6 @@ namespace SinqiaEstude.Services
                             statusAtribuicaoMateria = false;
                         }
                     }
-                    //Console.WriteLine("\nAluno: " + alunolist);
                 }
             }
         } 

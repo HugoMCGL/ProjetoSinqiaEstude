@@ -114,10 +114,10 @@ namespace AppSinqiaEstude
                                 professorService.cadastrarProfessor(nome, idade, email, cpf, endereco);
                                 continua = false;
                             }
+
                             else if (escolha == 2)//excluir professor
                             {
 
-                                
                             }
       
                             else if (escolha == 3)//atribuir matéria para o professor
@@ -127,8 +127,8 @@ namespace AppSinqiaEstude
                                 Console.WriteLine("Digite o nome da matéria: ");
                                 nomeMateria = Console.ReadLine();
 
-                                alunoService.cadastrarMateriaAluno(nome, nomeMateria);
-                                if (alunoService.statusAtribuicaoMateria)
+                                professorService.cadastrarMateriaProfessor(nome, nomeMateria);
+                                if (professorService.statusAtribuicaoMateria)
                                 {
                                     continua = false;
                                 }

@@ -17,12 +17,12 @@ namespace SinqiaEstude.Domain
             this.endereco = endereco;
         }
 
-        public List<Materia> MateriaProfessor { get; set; }
+        public Materia MateriaProfessor { get; set; }
 
         public override string ToString()
         {
-            return "\nnome: " + nome + "idade: "+idade+ "\nemail: " + email +
-                "\ncpf: " + CPF + "\nendereço: " + endereco;
+            return "\nnome: " + nome + "\nidade: "+idade+ "\nemail: " + email +
+                "\ncpf: " + CPF + "\nendereço: " + endereco+MateriaProfessor;
         }
 
     }
