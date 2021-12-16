@@ -9,7 +9,7 @@ namespace SinqiaEstude.Services
     {
         public bool statusAtribuicaoMateria;
         MateriaService materiaService = new MateriaService();
-        public void cadastrarAluno(string nome, int idade, string email, string cpf, string endereco)
+        public void CadastrarAluno(string nome, int idade, string email, string cpf, string endereco)
         {
 
             Aluno aluno = new Aluno(nome, idade, email, cpf, endereco);
@@ -17,8 +17,22 @@ namespace SinqiaEstude.Services
             Console.WriteLine("\naluno/a " + nome + " criado com sucesso!");
 
         }
+        public void ExcluirAluno(string nome)
+        {
 
-        public void cadastrarMateriaAluno(string nomeAluno, string materia)
+            AlunoRepository.Delete(AlunoRepository.FindByDescricao(nome));
+            if(AlunoRepository.FindByDescricao(nome)== null)
+            {
+                Console.WriteLine("Aluno Excluido com sucesso!");
+            }
+            else
+            {
+                Console.WriteLine("Erro!");
+            }
+
+        }
+
+        public void CadastrarMateriaAluno(string nomeAluno, string materia)
         {
             if (AlunoRepository.FindByDescricao(nomeAluno) == null)
             {

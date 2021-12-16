@@ -12,9 +12,13 @@ namespace SinqiaEstude.Repository
         {
             AlunoDB.Add(Aluno);
         }
+        public static void Delete(Aluno Aluno)
+        {
+            AlunoDB.Remove(Aluno);
+        }
         public static Aluno FindByDescricao(string descricao)
         {
-            // materia é uma função "generia" e após o => vem a condição de filtro
+            // materia é uma função "generica" e após o => vem a condição de filtro
             foreach (Aluno aluno in AlunoDB)
             {
                 if (aluno.nome.Contains(descricao, StringComparison.OrdinalIgnoreCase))

@@ -42,7 +42,7 @@ namespace AppSinqiaEstude
                         while (continua == true)
                         {
                             Thread.Sleep(500);
-                            Console.WriteLine("\n Digite 1 para cadastrar Aluno \n Digite 2 para Excluir aluno \n Digite 3 para atribuir matéria para o Aluno\n Digite 0 para voltar");
+                            Console.WriteLine("\n Digite 1 para cadastrar Aluno \n Digite 2 para Excluir aluno \n Digite 3 para atribuir matéria para o Aluno\n Digite 4 para listar todos os alunos cadastrados\n Digite 0 para voltar");
                             escolha = Convert.ToInt32(Console.ReadLine());
                             if (escolha == 1)//cadastrar aluno
                             {
@@ -56,13 +56,15 @@ namespace AppSinqiaEstude
                                 email = Console.ReadLine();
                                 Console.WriteLine("Digite o endereço do Aluno: ");
                                 endereco = Console.ReadLine();
-                                alunoService.cadastrarAluno(nome, idade, email, cpf, endereco);
+                                alunoService.CadastrarAluno(nome, idade, email, cpf, endereco);
                                 continua = false;
                             }
                             else if (escolha == 2)//excluir aluno
                             {
-
-                                
+                                Console.WriteLine("Digite o nome do Aluno a ser excluído: ");
+                                nome = Console.ReadLine();
+                                alunoService.ExcluirAluno(nome);
+                                continua = false;
                             }
                            
                             else if (escolha == 3)//atribuir matéria para o aluno
@@ -72,11 +74,18 @@ namespace AppSinqiaEstude
                                 Console.WriteLine("Digite o nome da matéria: ");
                                 nomeMateria = Console.ReadLine();
 
-                                alunoService.cadastrarMateriaAluno(nome, nomeMateria);
+                                alunoService.CadastrarMateriaAluno(nome, nomeMateria);
                                 if (alunoService.statusAtribuicaoMateria)
                                 {
                                     continua = false;
                                 } 
+                            }
+                            else if (escolha == 4)//listar alunos
+                            {
+                                foreach (Aluno alunoSearch in AlunoRepository.GetAll())
+                                {
+                                    Console.WriteLine("\nAluno(a): " + alunoSearch);
+                                }
                             }
                             else if (escolha == 0)
                             {
@@ -133,6 +142,13 @@ namespace AppSinqiaEstude
                                     continua = false;
                                 }
                             }
+                            else if (escolha == 4)//listar professor
+                            {
+                                foreach (Professor professorSearch in ProfessorRepository.GetAll())
+                                {
+                                    Console.WriteLine("\nProfessor: " + professorSearch);
+                                }
+                            }
                             else if (escolha == 0)
                             {
                                 continua = false;
@@ -161,6 +177,13 @@ namespace AppSinqiaEstude
                         else if (escolha == 2)
                         {
 
+                        }
+                        else if (escolha == 3)//listar materia
+                        {
+                            foreach (Materia materialist in materiaService.GetAll())
+                            {
+                                Console.WriteLine("\n" + materialist);
+                            }
                         }
                         else if(escolha == 0)
                         {
