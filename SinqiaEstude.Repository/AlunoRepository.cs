@@ -8,6 +8,18 @@ namespace SinqiaEstude.Repository
     {
         private static List<Aluno> AlunoDB = new List<Aluno>();
 
+        public static bool ContemAluno()
+        {
+            if (AlunoDB == null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        } 
+
         public static void Add(Aluno Aluno)
         {
             AlunoDB.Add(Aluno);

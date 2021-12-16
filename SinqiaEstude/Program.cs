@@ -8,11 +8,9 @@ using SinqiaEstude.Services;
 namespace AppSinqiaEstude
 {
     class Program
-    {
-        
+    {        
         static void Main(string[] args)
         {
-             
             Aluno aluno;
             AlunoService teste;
             AlunoService alunoService = new AlunoService();
@@ -82,10 +80,10 @@ namespace AppSinqiaEstude
                             }
                             else if (escolha == 4)//listar alunos
                             {
-                                foreach (Aluno alunoSearch in AlunoRepository.GetAll())
-                                {
-                                    Console.WriteLine("\nAluno(a): " + alunoSearch);
-                                }
+                                    foreach (Aluno alunoSearch in AlunoRepository.GetAll())
+                                    {
+                                        Console.WriteLine("\nAluno(a): " + alunoSearch);
+                                    }
                             }
                             else if (escolha == 0)
                             {
@@ -105,13 +103,12 @@ namespace AppSinqiaEstude
                         while (continua == true)
                         {
                             Thread.Sleep(500);
-                            Console.WriteLine("\n Digite 1 para cadastrar Professor\n Digite 2 para Excluir professor\n Digite 3 para atribuir matéria para o Professor\n Digite 0 para voltar");
+                            Console.WriteLine("\n Digite 1 para cadastrar Professor\n Digite 2 para Excluir professor\n Digite 3 para atribuir matéria para o Professor\n Digite 4 para listar todos os professores\n Digite 0 para voltar");
                             escolha = Convert.ToInt32(Console.ReadLine());
                             if (escolha == 1)//cadastrar professor
                             {
                                 Console.WriteLine("\nDigite o nome do Professor: ");
                                 nome = Console.ReadLine();
-
                                 Console.WriteLine("Digite a idade do Professor: ");
                                 idade = Convert.ToInt32(Console.ReadLine());
                                 Console.WriteLine("Digite o cpf do Professor: ");
@@ -126,12 +123,15 @@ namespace AppSinqiaEstude
 
                             else if (escolha == 2)//excluir professor
                             {
-
+                                Console.WriteLine("Digite o nome do Professor a ser excluído: ");
+                                nome = Console.ReadLine();
+                                professorService.ExcluirProfessor(nome);
+                                continua = false;
                             }
       
                             else if (escolha == 3)//atribuir matéria para o professor
                             {
-                                Console.WriteLine("Digite o nome do Professor: ");
+                                Console.WriteLine("\nDigite o nome do Professor: ");
                                 nome = Console.ReadLine();
                                 Console.WriteLine("Digite o nome da matéria: ");
                                 nomeMateria = Console.ReadLine();
@@ -165,7 +165,7 @@ namespace AppSinqiaEstude
                     case 3:
 
                         Thread.Sleep(500);
-                        Console.WriteLine("\n Digite 1 para cadastrar Materia \n Digite 2 para Excluir Materia\n Digite 0 para voltar");
+                        Console.WriteLine("\n Digite 1 para cadastrar Materia \n Digite 2 para Excluir Materia\n Digite 3 para listar todas as Materias\n Digite 0 para voltar");
                         escolha = Convert.ToInt32(Console.ReadLine());
                         if (escolha == 1)//cadastrar matéria
                         {
@@ -174,9 +174,12 @@ namespace AppSinqiaEstude
                             materiaService.cadastrarMateria(nomeMateria);
                             continua = false;
                         }
-                        else if (escolha == 2)
+                        else if (escolha == 2)// excluir materia
                         {
-
+                            Console.WriteLine("\nDigite o nome da Materia a ser excluída: ");
+                            nome = Console.ReadLine();
+                            materiaService.ExcluirMateria(nome);
+                            continua = false;
                         }
                         else if (escolha == 3)//listar materia
                         {

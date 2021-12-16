@@ -15,6 +15,20 @@ namespace SinqiaEstude.Services
             ProfessorRepository.Add(professor);
             Console.WriteLine("Professor: " + nome + " criado com sucesso!");
         }
+        public void ExcluirProfessor(string nome)
+        {
+
+            ProfessorRepository.Delete(ProfessorRepository.FindByDescricao(nome));
+            if (ProfessorRepository.FindByDescricao(nome) == null)
+            {
+                Console.WriteLine("Professor excluido com sucesso!");
+            }
+            else
+            {
+                Console.WriteLine("Erro!");
+            }
+
+        }
         public void cadastrarMateriaProfessor(string nomeProfessor, string materia)
         {
             if (ProfessorRepository.FindByDescricao(nomeProfessor) == null)

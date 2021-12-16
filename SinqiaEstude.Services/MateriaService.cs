@@ -21,6 +21,21 @@ namespace SinqiaEstude.Services
 
         }
 
+        public void ExcluirMateria(string nome)
+        {
+
+            MateriaRepository.Delete(MateriaRepository.FindByDescricao(nome));
+            if (MateriaRepository.FindByDescricao(nome) == null)
+            {
+                Console.WriteLine("Materia excluída com sucesso!");
+            }
+            else
+            {
+                Console.WriteLine("Erro!");
+            }
+
+        }
+
         public override string ToString()
         {
             return "Lista : " + MateriaRepository.GetAll();

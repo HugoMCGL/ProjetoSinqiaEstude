@@ -16,6 +16,11 @@ namespace SinqiaEstude.Repository
             ProfessorDB.Add(Professor);
         }
 
+        public static void Delete(Professor Professor)
+        {
+            ProfessorDB.Remove(Professor);
+        }
+
         public static Professor FindByDescricao(string descricao)
         {
             foreach (Professor professor in ProfessorDB)

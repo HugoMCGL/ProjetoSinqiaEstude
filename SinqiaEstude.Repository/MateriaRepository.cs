@@ -15,6 +15,11 @@ namespace SinqiaEstude.Repository
             MateriaDB.Add(materia);
         }
 
+        public static void Delete(Materia Materia)
+        {
+            MateriaDB.Remove(Materia);
+        }
+
         public static Materia FindByDescricao(string descricao) 
         {
             //return MateriaDB.FirstOrDefault(materia => materia.nome.Contains(descricao));
